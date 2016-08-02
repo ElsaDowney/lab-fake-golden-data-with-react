@@ -4,6 +4,18 @@ var GoldenData = React.createClass({
         return {items: []};
     },
 
+    delText: function (e) {
+        this.setState({
+            items: deleteArray(this.state.items, e.target.value)
+        });
+    },
+
+    delDate: function (e) {
+        this.setState({
+            items: deleteArray(this.state.items, e.target.value)
+        });
+    },
+
     inputs: function () {
         this.setState({
             items: inputArray(this.state.items, 1)
@@ -29,13 +41,13 @@ var GoldenData = React.createClass({
                         if (item === 1) {
                             return <li>
                                 <input type="text" value=""/>
-                                <button type="button">x</button>
+                                <button type="button" onClick={this.delText} value={index}>x</button>
                             </li>
                         }
                         else {
                             return <li>
                                 <input type="date" value=""/>
-                                <button type="button">x</button>
+                                <button type="button" onClick={this.delDate} value={index}>x</button>
                             </li>
                         }
 

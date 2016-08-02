@@ -4,6 +4,6 @@ function inputArray(array, number) {
 }
 
 function deleteArray(array, index) {
-    const a = array.splice(index, 1);
-    return a;
+    array.splice(index, 1);
+    return array;   
 }
