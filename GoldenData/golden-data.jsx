@@ -1,13 +1,7 @@
-var IsChanged = React.createClass({
-    render: function () {
-        console.log(this.props.value);
-        return 
-    }
-});
 var GoldenData = React.createClass({
 
     getInitialState: function () {
-        return {items: [], isChange: false};
+        return {items: [], isChange: [false]};
     },
 
     delText: function (e) {
@@ -33,42 +27,78 @@ var GoldenData = React.createClass({
     },
 
     changed: function () {
-        this.setState({isChange: !isChange});
+        this.setState({isChange: [Change(this.state.isChange)]});
     },
 
     render: function () {
         return (
             <div>
-
-                <IsChanged value={this.state.isChange}/>
-
-                <p>
-                    <button type="button" onClick={this.changed}>预览</button>
-                </p>
-                <p>
-                    <button type="button" value="1" onClick={this.inputs}>文本框</button>
-                </p>
-                <p>
-                    <button type="button" value="2" onClick={this.inputs1}>日期</button>
-                </p>
-                <form>
-                    {this.state.items.map((item, index)=> {
-                        if (item === 1) {
-                            return <p>
-                                <input type="text"/>
-                                <button type="button" onClick={this.delText} value={index}>x</button>
+                {this.state.isChange.map((item)=> {
+                    "use strict";
+                    if (item === false) {
+                        return <div>
+                            <p>
+                                <button type="button" onClick={this.changed}>预览</button>
                             </p>
-                        }
-                        else {
-                            return <p>
-                                <input type="date"/>
-                                <button type="button" onClick={this.delDate} value={index}>x</button>
+                            <p>
+                                <button type="button" value="1" onClick={this.inputs}>文本框</button>
                             </p>
-                        }
+                            <p>
+                                <button type="button" value="2" onClick={this.inputs1}>日期</button>
+                            </p>
+                            <form>
+                                {this.state.items.map((item, index)=> {
+                                    if (item === 1) {
+                                        return <p>
+                                            <input type="text"/>
+                                            <button type="button"
+                                                    onClick={this.delText} value={index}>x
+                                            </button>
+                                        </p>
+                                    }
+                                    else {
+                                        return <p>
+                                            <input type="date"/>
+                                            <button type="button"
+                                                    onClick={this.delDate} value={index}>x
+                                            </button>
+                                        </p>
+                                    }
 
-                    })
+                                })
+                                }
+                            </form>
+                        </div>
                     }
-                </form>
+
+
+                    else {
+                        return <div>
+                            <button type="button" onClick={this.changed}>返回</button>
+                            <form>
+                                {this.state.items.map((item, index)=> {
+                                    if (item === 1) {
+                                        return <p>
+                                            <input type="text"/>
+                                        </p>
+                                    }
+                                    else {
+                                        return <p>
+                                            <input type="date"/>
+                                        </p>
+                                    }
+
+                                })
+                                }
+                            </form>
+                            <button type="button">提交</button>
+                        </div>
+                    }
+
+
+                })}
+
+
             </div>
         )
     }
