@@ -1,7 +1,13 @@
+var IsChanged = React.createClass({
+    render: function () {
+        console.log(this.props.value);
+        return 
+    }
+});
 var GoldenData = React.createClass({
 
     getInitialState: function () {
-        return {items: []};
+        return {items: [], isChange: false};
     },
 
     delText: function (e) {
@@ -9,7 +15,6 @@ var GoldenData = React.createClass({
             items: deleteArray(this.state.items, e.target.value)
         });
     },
-
     delDate: function (e) {
         this.setState({
             items: deleteArray(this.state.items, e.target.value)
@@ -27,11 +32,18 @@ var GoldenData = React.createClass({
         });
     },
 
+    changed: function () {
+        this.setState({isChange: !isChange});
+    },
+
     render: function () {
         return (
             <div>
+
+                <IsChanged value={this.state.isChange}/>
+
                 <p>
-                    <button type="button">预览</button>
+                    <button type="button" onClick={this.changed}>预览</button>
                 </p>
                 <p>
                     <button type="button" value="1" onClick={this.inputs}>文本框</button>
