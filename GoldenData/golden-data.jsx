@@ -31,29 +31,32 @@ var GoldenData = React.createClass({
         return (
             <div>
                 <p>
+                    <button type="button">预览</button>
+                </p>
+                <p>
                     <button type="button" value="1" onClick={this.inputs}>文本框</button>
                 </p>
                 <p>
                     <button type="button" value="2" onClick={this.inputs1}>日期</button>
                 </p>
-                <ul>
+                <form>
                     {this.state.items.map((item, index)=> {
                         if (item === 1) {
-                            return <li>
-                                <input type="text" value=""/>
+                            return <p>
+                                <input type="text"/>
                                 <button type="button" onClick={this.delText} value={index}>x</button>
-                            </li>
+                            </p>
                         }
                         else {
-                            return <li>
-                                <input type="date" value=""/>
+                            return <p>
+                                <input type="date"/>
                                 <button type="button" onClick={this.delDate} value={index}>x</button>
-                            </li>
+                            </p>
                         }
 
                     })
                     }
-                </ul>
+                </form>
             </div>
         )
     }
