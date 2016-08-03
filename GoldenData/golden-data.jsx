@@ -1,7 +1,7 @@
 var GoldenData = React.createClass({
 
     getInitialState: function () {
-        return {items: [], isChange: [false]};
+        return {items: [], isChange: [false], textValue: 0};
     },
 
     delText: function (e) {
@@ -17,17 +17,23 @@ var GoldenData = React.createClass({
 
     inputs: function () {
         this.setState({
-            items: inputArray(this.state.items, 1)
+            textValue: 1
         });
     },
     inputs1: function () {
         this.setState({
-            items: inputArray(this.state.items, 2)
+            textValue: 2
         });
     },
 
     changed: function () {
         this.setState({isChange: [Change(this.state.isChange)]});
+    },
+
+    aaa: function () {
+        this.setState({
+            items: inputArray(this.state.items, this.state.textValue)
+        });
     },
 
     render: function () {
@@ -37,16 +43,21 @@ var GoldenData = React.createClass({
                     "use strict";
                     if (item === false) {
                         return <div>
+                            <form>
                             <p>
                                 <button type="button" onClick={this.changed}>预览</button>
                             </p>
-                            <p>
-                                <button type="button" value="1" onClick={this.inputs}>文本框</button>
-                            </p>
-                            <p>
-                                <button type="button" value="2" onClick={this.inputs1}>日期</button>
-                            </p>
-                            <form>
+
+                                <p>
+                                    <input type="radio" name="1" onClick={this.inputs}/>文本框
+                                </p>
+                                <p>
+                                    <input type="radio" name="1" onClick={this.inputs1}/>日期
+                                </p>
+
+                            <button type="button" onClick={this.aaa}>+</button>
+
+
                                 {this.state.items.map((item, index)=> {
                                     if (item === 1) {
                                         return <p>
@@ -76,7 +87,7 @@ var GoldenData = React.createClass({
                         return <div>
                             <button type="button" onClick={this.changed}>返回</button>
                             <form>
-                                {this.state.items.map((item, index)=> {
+                                {this.state.items.map((item)=> {
                                     if (item === 1) {
                                         return <p>
                                             <input type="text"/>
