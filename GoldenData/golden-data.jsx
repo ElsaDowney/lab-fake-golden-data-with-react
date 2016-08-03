@@ -45,51 +45,49 @@ var GoldenData = React.createClass({
                             type="button" onClick={this.changed}>预览
                     </button>
                 </p>
-                
-                <form className="TextRight">
+                <div>
+                    <form className="TextRight">
+                        <p>
+                            <input
+                                type="radio" name="1" onClick={this.inputs}/>文本框
+                        </p>
+                        <p>
+                            <input type="radio" name="1" onClick={this.inputs1}/>日期
+                        </p>
+                    </form>
+                    <button className="ButtonRight" type="button" onClick={this.aaa}>+</button>
 
-                    <p>
-                        <input
-                            type="radio" name="1" onClick={this.inputs}/>文本框
-                    </p>
-                    <p>
-                        <input type="radio" name="1" onClick={this.inputs1}/>日期
-                    </p>
-                </form>
+                    <form className="outPut">
 
-                <button className="ButtonRight" type="button" onClick={this.aaa}>+</button>
+                        {this.state.items.map((item, index)=> {
+                            if (item === 1) {
+                                return <p>
+                                    <input type="text"/>
+                                    <button className="buttonPut" type="button"
+                                            onClick={this.delText} value={index}>x
+                                    </button>
+                                </p>
+                            }
+                            else {
+                                return <p>
+                                    <input type="date"/>
+                                    <button className="buttonPut" type="button"
+                                            onClick={this.delDate} value={index}>x
+                                    </button>
+                                </p>
+                            }
 
-
-                <form className="outPut">
-
-                    {this.state.items.map((item, index)=> {
-                        if (item === 1) {
-                            return <p>
-                                <input type="text"/>
-                                <button type="button"
-                                        onClick={this.delText} value={index}>x
-                                </button>
-                            </p>
+                        })
                         }
-                        else {
-                            return <p>
-                                <input type="date"/>
-                                <button type="button"
-                                        onClick={this.delDate} value={index}>x
-                                </button>
-                            </p>
-                        }
-
-                    })
-                    }
-                </form>
+                    </form>
+                </div>
             </div>
         }
 
         else {
             return <div>
                 <button className="ButtonCenter" type="button" onClick={this.changed}>返回</button>
-                <form>
+                <form  className="outPut">
                     {this.state.items.map((item)=> {
                         if (item === 1) {
                             return <p>
